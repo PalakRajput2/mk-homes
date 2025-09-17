@@ -3,7 +3,7 @@ import { TQueryData } from "@/types/query";
 import { TeamMember } from "@/types/team";
 import { TeamPayload } from "@/validations/team";
 
-const path = '/admin/team';
+const path = '/admin/team/list';
 
 
 type editTeamPayload = {
@@ -11,9 +11,9 @@ type editTeamPayload = {
 }
 
 //Fetch all 
-export const fetchTeamList = async (payload: TQueryData): Promise<TeamMember[]> => {
-  const response = await backendClient.get(`${path}`);
-  return response.data?.data;
+export const fetchTeamList = async (payload: TQueryData) => {
+  const response = await backendClient.get(`${path}?size=${payload.size}&skip=${payload.skip}`);
+  return response?.data?.data;
 };
 
 
@@ -26,9 +26,7 @@ export const addTeamRequest = async (payload: TeamPayload) => {
 
   } catch (error) {
     throw error;
-  } finally {
-
-  }
+  } 
 };
 
 //Edit Request 
@@ -40,8 +38,6 @@ export const editTeamRequest = async ({ payload, id }: editTeamPayload) => {
     return response;
   } catch (error) {
     throw error;
-  } finally {
-
   }
 };
 
@@ -55,8 +51,6 @@ export const deleteTeamRequest = async (ids: number[]) => {
     return response;
   } catch (error) {
     throw error;
-  } finally {
-
   }
 };
 
@@ -67,6 +61,5 @@ export const fetchTeam = async (id: number) => {
         return response?.data?.data;
     } catch (error) {
         throw error;
-    } finally {
-      }
+    } 
 };

@@ -20,7 +20,7 @@ export default function DashboardPage() {
   useEffect(() => {
     const fetchTeam = async () => {
       try {
-        const response = await backendClient.get('/admin/team');
+        const response = await backendClient.get('/admin/team/list');
         setTeam(response.data.data || []);
       } catch (error) {
         console.error('Failed to fetch team', error);
@@ -42,7 +42,7 @@ export default function DashboardPage() {
         <p>Loading team...</p>
       ) : (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-          {team.map((member) => (
+          {team?.map((member) => (
             <div key={member.id} className="border p-4 rounded shadow">
               <img
                 src={`/uploads/${member.image}`}

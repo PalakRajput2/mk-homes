@@ -28,7 +28,7 @@ const LoginPage = () => {
         localStorage.setItem('token', token);
         localStorage.setItem('role', role);
         setAuthToken(token);
-        router.replace('/');
+        router.replace('/portal/team');
       } else {
         setError('Invalid email or password.');
       }
