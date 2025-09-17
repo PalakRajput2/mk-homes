@@ -1,7 +1,6 @@
 // client/endpoints/auth/login.ts
 import { backendClient, setAuthToken } from "@/client/backendClient";
 
-export const LOGIN_KEY = "login";
 
 export type TLogin = {
   email: string;
@@ -13,7 +12,6 @@ export const loginRequest = async (payload: TLogin) => {
 
  
   const { token, role } = response.data;
-
   if (token) {
     setAuthToken(token); 
     localStorage.setItem("role", role);

@@ -18,8 +18,7 @@ const TeamList = () => {
             search: '',
             sorting: {},
         };
-
-        try {
+ try {
             const data = await fetchTeamList(payload);
             setTeam(data || []);
         } catch (error) {

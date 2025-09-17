@@ -48,7 +48,7 @@ const Sidebar = () => {
 
   return (
     <div className="w-64 bg-white shadow-md h-screen fixed overflow-auto">
-      <div className="p-6 text-2xl font-bold border-b">MK Homes</div>
+      <div className="p-6 text-3xl border-b  font-mono">MK Homes</div>
       <nav className="mt-6">
         {menuItems.map((item) => (
           <div key={item.name}>

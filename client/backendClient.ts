@@ -21,6 +21,6 @@ export const setAuthToken = (token: string) => {
 if (typeof window !== 'undefined') {
   const token = localStorage.getItem('token');
   if (token) {
-    backendClient.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+    backendClient.defaults.headers.common['Authorization'] = `Bearer ${localStorage.getItem('token')}`;
   }
 }
