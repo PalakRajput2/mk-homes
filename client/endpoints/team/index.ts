@@ -9,6 +9,7 @@ const path = '/admin/team/list';
 type editTeamPayload = {
   payload: TeamPayload, id: number
 }
+export const FETCH_TEAMS_KEY = 'list-teams';
 
 //Fetch all 
 export const fetchTeamList = async (payload: TQueryData) => {
