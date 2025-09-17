@@ -1,0 +1,24 @@
+'use client';
+
+import { useAuth } from '@/hooks/useAuth';
+import TeamList from '@/components/portal/team/TeamList';
+import Link from 'next/link';
+
+
+const TeamPage = () => {
+
+  return (
+    <div className="p-8">
+      <div className='flex items-center text-white justify-end'>
+        <Link href="/portal/team/add">
+            <button className='h-10 w-30 p-3 bg-blue-400 rounded-full cursor-pointer' >Add new +  </button>
+        </Link>
+      </div>
+      <h1 className="text-2xl font-bold mb-6 text-center ">Team Members</h1>
+      <TeamList />
+    
+    </div>
+  );
+};
+
+export default TeamPage;
