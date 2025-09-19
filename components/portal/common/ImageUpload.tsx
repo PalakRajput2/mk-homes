@@ -75,7 +75,7 @@ const ImageUpload = forwardRef(({ initialImageUrl = null, onFileChange }: ImageU
           <img
             src={existingImage}
             alt="Existing"
-            className="max-w-[200px] object-contain rounded-md"
+            className="max-w-[200px] max-h-[160px] object-contain rounded-md"
           />
         ) : (
           <div>

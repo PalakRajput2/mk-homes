@@ -1,4 +1,4 @@
-'use client'
+'use client';
 
 import React from 'react';
 import { FiEdit, FiTrash2 } from 'react-icons/fi';
@@ -8,6 +8,11 @@ import { deleteTeamRequest, FETCH_TEAMS_KEY } from '@/client/endpoints/team';
 import toast, { Toaster } from 'react-hot-toast';
 import { TeamMember } from '@/types/team';
 
+import dayjs from 'dayjs';
+import utc from 'dayjs/plugin/utc';
+import timezone from 'dayjs/plugin/timezone';
+import { useDateFormatter } from '@/hooks/dates/useDateFormatter';
+
 
 
 interface TableProps {
@@ -15,9 +20,11 @@ interface TableProps {
     refetch: () => void;
 }
 
+dayjs.extend(utc);
+dayjs.extend(timezone);
 const Table: React.FC<TableProps> = ({ data, refetch }) => {
     const queryClient = useQueryClient();
-
+    const { formatListDate, formatListTime } = useDateFormatter();
     const deleteMutation = useMutation({
         mutationFn: (id: number) => deleteTeamRequest([id]),
         onSuccess: () => {
@@ -56,6 +63,7 @@ const Table: React.FC<TableProps> = ({ data, refetch }) => {
         ), { duration: 5000 });
     };
 
+
     return (
         <div>
             <Toaster position="top-center" />
@@ -68,7 +76,7 @@ const Table: React.FC<TableProps> = ({ data, refetch }) => {
                                 <th className="table-header-cell">Name</th>
                                 <th className="table-header-cell">Designation</th>
                                 <th className="table-header-cell">Facebook</th>
-                                <th className="table-header-cell">Instagram</th>
+                                <th className="table-header-cell">Created At</th>
                                 <th className="table-header-cell">Actions</th>
                             </tr>
                         </thead>
@@ -88,18 +96,18 @@ const Table: React.FC<TableProps> = ({ data, refetch }) => {
                                             Facebook
                                         </a>
                                     </td>
-                                    <td className="px-6 py-4">
-                                        <a
-                                            href={member.instagram}
-                                            target="_blank"
-                                            rel="noopener noreferrer"
-                                            className="text-pink-500 hover:underline"
-                                        >
-                                            Instagram
-                                        </a>
+                                    <td className="px-6 py-4 text-sm text-gray-700">
+                                        {member.createdAt ? (
+                                            <div className="flex flex-col gap-1">
+                                                <span>{formatListDate(member.createdAt)}</span>
+                                                <span className='text-red-500'>{formatListTime(member.createdAt)}</span>
+                                            </div>
+                                        ) : (
+                                            ' - '
+                                        )}
                                     </td>
-                                    <td className="px-6 py-4  space-x-6">
 
+                                    <td className="px-6 py-4 space-x-6">
                                         <Link href={`/portal/team/add?id=${member.id}`}>
                                             <button className="text-blue-500 hover:text-blue-700 cursor-pointer">
                                                 <FiEdit size={20} />

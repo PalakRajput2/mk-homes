@@ -5,6 +5,6 @@ export interface TeamMember {
   image: string;
   facebook: string;
   instagram: string;
-  created_at: string;
-  updated_at: string;
+  createdAt: Date;
+  updatedAt: Date;
 }
