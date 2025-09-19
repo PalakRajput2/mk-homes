@@ -4,7 +4,7 @@ import { useState } from 'react';
 import { useTeamList } from '@/hooks/useTeamList';
 import Loading from '../loader/Loading';
 
-import Pagination from './Pagination';
+import Pagination from '../common/Pagination';
 import Table from './Table';
 
 const TeamList = () => {

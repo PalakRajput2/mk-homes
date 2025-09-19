@@ -8,9 +8,8 @@ import { deleteTeamRequest, GET_TEAM_KEY } from '@/client/endpoints/team';
 import toast, { Toaster } from 'react-hot-toast';
 import { TeamMember } from '@/types/team';
 import { useDateFormatter } from '@/hooks/dates/useDateFormatter';
-
 import { sortByCreatedAtDesc, sortByName, toggleSortOrder, SortOrder } from '../common/sorting';
-import { showConfirmDeleteToast } from '@/utils/confirmDeleteToast'; // <-- import your toast function
+import { showConfirmDeleteToast } from '@/utils/confirmDeleteToast'; 
 
 interface TableProps {
     data: TeamMember[];
@@ -23,19 +22,22 @@ const Table: React.FC<TableProps> = ({ data, refetch }) => {
 
     const queryClient = useQueryClient();
     const { formatListDate, formatListTime } = useDateFormatter();
-    const editPath= "/portal/team/edit"
+    const editPath = "/portal/team/edit"
     // On data load, sort by createdAt descending by default
     useEffect(() => {
         setSortedData(sortByCreatedAtDesc(data));
-        setSortOrder(null); // no sort by name initially
+        setSortOrder(null);
+        
     }, [data]);
 
     const handleSortByName = () => {
-        const newSortOrder = toggleSortOrder(sortOrder);
-        const sorted = sortByName(sortedData, newSortOrder);
-        setSortOrder(newSortOrder);
-        setSortedData(sorted);
-    };
+  const newSortOrder = toggleSortOrder(sortOrder);
+  const sorted = sortByName(data, newSortOrder);
+  setSortOrder(newSortOrder);
+  setSortedData(sorted);
+ 
+};
+
 
     const deleteMutation = useMutation({
         mutationFn: (id: number) => deleteTeamRequest([id]),
@@ -63,14 +65,14 @@ const Table: React.FC<TableProps> = ({ data, refetch }) => {
     return (
         <div>
             <Toaster position="top-center" />
-            <div className="flex flex-col items-center pl-60">
-                <div className="overflow-x-auto mb-6">
-                    <table className="w-[1350px] bg-white divide-y divide-gray-200">
-                        <thead className="bg-blue-500">
-                            <tr>
-                                <th className="table-header-cell">ID</th>
+            <div className="flex flex-col items-center md:pl-60">
+                <div className="overflow-x-auto mb-6 ">
+                    <table className="w-[1320px] bg-white divide-y divide-gray-200  ">
+                        <thead className="bg-blue-500 ">
+                            <tr >
+                           
                                 <th
-                                    className="table-header-cell cursor-pointer"
+                                    className="table-header-cell cursor-pointer "
                                     onClick={handleSortByName}
                                     aria-sort={
                                         sortOrder === 'asc'
@@ -93,7 +95,7 @@ const Table: React.FC<TableProps> = ({ data, refetch }) => {
                                                 ? 'descending'
                                                 : 'none'
                                     }>
-                                        Created At {sortOrder === 'asc' ? '▲' : sortOrder === 'desc' ? '▼' : '▼'}
+                                    Created At {sortOrder === 'asc' ? '▲' : sortOrder === 'desc' ? '▼' : '▼'}
                                 </th>
                                 <th className="table-header-cell">Actions</th>
                             </tr>
@@ -101,8 +103,7 @@ const Table: React.FC<TableProps> = ({ data, refetch }) => {
                         <tbody className="bg-white divide-y divide-gray-200">
                             {sortedData.map((member) => (
                                 <tr key={member.id} className="hover:bg-gray-100">
-                                    <td className="px-6 py-4 text-sm text-gray-700">{member.id}</td>
-                                    <td className="px-6 py-4 text-sm text-gray-700">{member.name}</td>
+                                      <td className="px-6 py-4 text-sm text-gray-700">{member.name}</td>
                                     <td className="px-6 py-4 text-sm text-gray-700">{member.designation}</td>
                                     <td className="px-6 py-4">
                                         <a

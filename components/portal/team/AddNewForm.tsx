@@ -126,7 +126,7 @@ export default function AddNewForm() {
         {/* Name */}
         <div className="grid grid-cols-2 gap-4">
           <div>
-            <label className="block text-[15px] font-medium text-gray-700 pb-3">
+            <label className="block text-[15px] font-medium text-gray-700 pb-2">
               Name <span className="text-red-500 text-lg">*</span>
             </label>
             <input

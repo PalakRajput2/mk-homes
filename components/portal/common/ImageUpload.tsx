@@ -61,7 +61,7 @@ const ImageUpload = forwardRef(({ initialImageUrl = null, onFileChange }: ImageU
     <section className="">
       <div
         {...getRootProps({
-          className: `border-2 border-dashed rounded-md p-6 cursor-pointer text-center
+          className: `border-2 border-dashed rounded-md p-6 cursor-pointer text-center hover:bg-blue-100
             ${isDragActive ? 'border-blue-500 bg-blue-50' : 'border-gray-300 hover:border-gray-400'}
             w-[500px] h-[200px]  flex items-center justify-center`
         })}
@@ -78,7 +78,7 @@ const ImageUpload = forwardRef(({ initialImageUrl = null, onFileChange }: ImageU
             className="max-w-[200px] max-h-[160px] object-contain "
           />
         ) : (
-          <div>
+          <div >
             <p className="text-sm text-gray-700 mb-1">
               <span className='text-blue-500'>Click to upload</span> or drag & drop an image
             </p>
