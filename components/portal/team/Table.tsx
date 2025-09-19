@@ -11,114 +11,115 @@ import { TeamMember } from '@/types/team';
 
 
 interface TableProps {
-  data: TeamMember[];
-  refetch: () => void;
+    data: TeamMember[];
+    refetch: () => void;
 }
 
 const Table: React.FC<TableProps> = ({ data, refetch }) => {
-  const queryClient = useQueryClient();
+    const queryClient = useQueryClient();
 
-  const deleteMutation = useMutation({
-    mutationFn: (id: number) => deleteTeamRequest([id]),
-    onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: [FETCH_TEAMS_KEY] });
-      refetch();
-      toast.success('Team member deleted successfully');
-    },
-    onError: (error) => {
-      console.error('Delete failed:', error);
-      toast.error('Failed to delete team member');
-    }
-  });
+    const deleteMutation = useMutation({
+        mutationFn: (id: number) => deleteTeamRequest([id]),
+        onSuccess: () => {
+            queryClient.invalidateQueries({ queryKey: [FETCH_TEAMS_KEY] });
+            refetch();
+            toast.success('Team member deleted successfully');
+        },
+        onError: (error) => {
+            console.error('Delete failed:', error);
+            toast.error('Failed to delete team member');
+        }
+    });
 
-  const handleDelete = (id: number, name: string) => {
-    toast((t) => (
-      <div className="p-2 h-[100px] w-[200px]">
-        <p className="text-lg mb-2">Delete {name}?</p>
-        <div className="flex gap-2 justify-end">
-          <button
-            onClick={() => {
-              deleteMutation.mutate(id);
-              toast.dismiss(t.id);
-            }}
-            className="px-2 py-1 text-md bg-red-500 text-white rounded cursor-pointer"
-          >
-            Yes
-          </button>
-          <button
-            onClick={() => toast.dismiss(t.id)}
-            className="px-2 py-1 text-md border rounded cursor-pointer"
-          >
-            No
-          </button>
-        </div>
-      </div>
-    ), { duration: 5000 });
-  };
-
-  return (
-    <div>
-      <Toaster position="top-center" />
-      <div className="flex flex-col items-center p-10 pl-20">
-        <div className="overflow-x-auto shadow-lg rounded-lg mb-6">
-          <table className="w-[1000px] bg-white divide-y divide-gray-200">
-            <thead className="bg-blue-500">
-              <tr>
-                <th className="table-header-cell">ID</th>
-                <th className="table-header-cell">Name</th>
-                <th className="table-header-cell">Designation</th>
-                <th className="table-header-cell">Facebook</th>
-                <th className="table-header-cell">Instagram</th>
-                <th className="table-header-cell">Actions</th>
-              </tr>
-            </thead>
-            <tbody className="bg-white divide-y divide-gray-200">
-              {data.map((member) => (
-                <tr key={member.id} className="hover:bg-gray-100">
-                  <td className="px-6 py-4 text-sm text-gray-700">{member.id}</td>
-                  <td className="px-6 py-4 text-sm text-gray-700">{member.name}</td>
-                  <td className="px-6 py-4 text-sm text-gray-700">{member.designation}</td>
-                  <td className="px-6 py-4">
-                    <a
-                      href={member.facebook}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-blue-500 hover:underline"
-                    >
-                      Facebook
-                    </a>
-                  </td>
-                  <td className="px-6 py-4">
-                    <a
-                      href={member.instagram}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-pink-500 hover:underline"
-                    >
-                      Instagram
-                    </a>
-                  </td>
-                  <td className="px-6 py-4  space-x-6">
-                    <Link href="/portal/team/add">
-                      <button className="text-blue-500 hover:text-blue-700 cursor-pointer">
-                        <FiEdit size={20} />
-                      </button>
-                    </Link>
+    const handleDelete = (id: number, name: string) => {
+        toast((t) => (
+            <div className="p-2 h-[100px] w-[200px]">
+                <p className="text-lg mb-2">Delete {name}?</p>
+                <div className="flex gap-2 justify-end">
                     <button
-                      onClick={() => handleDelete(member.id, member.name)}
-                      className="text-red-500 hover:text-red-700 cursor-pointer"
+                        onClick={() => {
+                            deleteMutation.mutate(id);
+                            toast.dismiss(t.id);
+                        }}
+                        className="px-2 py-1 text-md bg-red-500 text-white rounded cursor-pointer"
                     >
-                      <FiTrash2 size={20} />
+                        Yes
                     </button>
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
+                    <button
+                        onClick={() => toast.dismiss(t.id)}
+                        className="px-2 py-1 text-md border rounded cursor-pointer"
+                    >
+                        No
+                    </button>
+                </div>
+            </div>
+        ), { duration: 5000 });
+    };
+
+    return (
+        <div>
+            <Toaster position="top-center" />
+            <div className="flex flex-col items-center p-10 pl-20">
+                <div className="overflow-x-auto shadow-lg rounded-lg mb-6">
+                    <table className="w-[1000px] bg-white divide-y divide-gray-200">
+                        <thead className="bg-blue-500">
+                            <tr>
+                                <th className="table-header-cell">ID</th>
+                                <th className="table-header-cell">Name</th>
+                                <th className="table-header-cell">Designation</th>
+                                <th className="table-header-cell">Facebook</th>
+                                <th className="table-header-cell">Instagram</th>
+                                <th className="table-header-cell">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody className="bg-white divide-y divide-gray-200">
+                            {data.map((member) => (
+                                <tr key={member.id} className="hover:bg-gray-100">
+                                    <td className="px-6 py-4 text-sm text-gray-700">{member.id}</td>
+                                    <td className="px-6 py-4 text-sm text-gray-700">{member.name}</td>
+                                    <td className="px-6 py-4 text-sm text-gray-700">{member.designation}</td>
+                                    <td className="px-6 py-4">
+                                        <a
+                                            href={member.facebook}
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            className="text-blue-500 hover:underline"
+                                        >
+                                            Facebook
+                                        </a>
+                                    </td>
+                                    <td className="px-6 py-4">
+                                        <a
+                                            href={member.instagram}
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            className="text-pink-500 hover:underline"
+                                        >
+                                            Instagram
+                                        </a>
+                                    </td>
+                                    <td className="px-6 py-4  space-x-6">
+
+                                        <Link href={`/portal/team/add?id=${member.id}`}>
+                                            <button className="text-blue-500 hover:text-blue-700 cursor-pointer">
+                                                <FiEdit size={20} />
+                                            </button>
+                                        </Link>
+                                        <button
+                                            onClick={() => handleDelete(member.id, member.name)}
+                                            className="text-red-500 hover:text-red-700 cursor-pointer"
+                                        >
+                                            <FiTrash2 size={20} />
+                                        </button>
+                                    </td>
+                                </tr>
+                            ))}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
         </div>
-      </div>
-    </div>
-  );
+    );
 };
 
 export default Table;

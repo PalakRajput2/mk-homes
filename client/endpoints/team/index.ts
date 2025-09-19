@@ -11,13 +11,23 @@ type editTeamPayload = {
 }
 
 export const FETCH_TEAMS_KEY = 'list-teams';
+export const GET_TEAM_KEY = 'get-team';
 //Fetch all 
 export const fetchTeamList = async (payload: TQueryData) => {
   const response = await backendClient.get(`${path}/list?size=${payload.size}&skip=${payload.skip}`); 
   return response?.data?.data;
 };
 
+// Fetch single team member by ID
+export const fetchTeam = async (id: number) => {
 
+    try {
+        const response = await backendClient.get(`${path}/${id}`);
+        return response?.data?.data;
+    } catch (error) {
+        throw error;
+    } 
+};
 // Add Request
 export const addTeamRequest = async (data: any) => {
   try {

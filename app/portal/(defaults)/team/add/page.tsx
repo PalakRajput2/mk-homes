@@ -8,10 +8,10 @@ export const metadata = {
 const page = () => {
   
   return (
-    <div>
+    <div className=''>
   
         <AddNewForm/>
-    </div>
+    </div>    
   )
 }
 
