@@ -31,7 +31,7 @@ const Pagination: React.FC<PaginationProps> = ({
         onPageSizeChange(size);
     };
     return (
-        <div className="pl-80  pr-80 w-full flex items-center justify-between mt-4 ">
+        <div className="pl-64  w-full flex items-center justify-between mt-4 ">
             {/* Showing X to Y of Z entries */}
             <div className="text-sm text-gray-600 font-medium">
                 Showing {startEntry} to {endEntry} of {totalItems} entries
