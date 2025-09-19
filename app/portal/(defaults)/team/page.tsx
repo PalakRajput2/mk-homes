@@ -19,7 +19,7 @@ const TeamPage = () => {
       <div className='flex items-center text-white justify-end'>
         
         <Link href="/portal/team/add">
-            <button className='h-10 w-30 p-3 bg-blue-400 rounded-full cursor-pointer' >Add new +  </button>
+            <button className='h-10 w-40  bg-blue-500 rounded-sm cursor-pointer' >Add new +  </button>
         </Link>
       </div>
       <h1 className="text-2xl font-bold mb-6 text-center ">Team Members</h1>

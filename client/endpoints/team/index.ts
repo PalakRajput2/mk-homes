@@ -19,15 +19,13 @@ export const fetchTeamList = async (payload: TQueryData) => {
 
 
 // Add Request
-export const addTeamRequest = async (payload: TeamPayload) => {
+export const addTeamRequest = async (data: any) => {
   try {
-    const response = await backendClient.post(`${path}/create`, payload
-    );
+    const response = await backendClient.post(`${path}/create`, data);
     return response;
-
   } catch (error) {
     throw error;
-  } 
+  }
 };
 
 //Edit Request 

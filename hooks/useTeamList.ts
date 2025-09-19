@@ -24,7 +24,7 @@ export const useTeamList = (skip: number, size: number) => {
       const { data = [], total = data.length } = response;
       return { data, total };
     },
-    staleTime: 10 * 60 * 1000,
+    staleTime: 0,
     retry: 1,
   });
 };
