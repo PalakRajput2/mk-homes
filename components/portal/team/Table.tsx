@@ -98,8 +98,8 @@ const Table: React.FC<TableProps> = ({ data, refetch }) => {
                             {sortedData.length > 0 ? (
                                 sortedData.map((member) => (
                                     <tr key={member.id} className="hover:bg-gray-100">
-                                        <td className="px-6 py-4 text-sm text-gray-700">{member.name}</td>
-                                        <td className="px-6 py-4 text-sm text-gray-700">{member.designation}</td>
+                                        <td className="px-6 py-4 text-sm text-gray-900">{member.name}</td>
+                                        <td className="px-6 py-4 text-sm text-gray-900">{member.designation}</td>
                                         <td className="px-6 py-4">
                                             <a
                                                 href={member.facebook}
@@ -110,7 +110,7 @@ const Table: React.FC<TableProps> = ({ data, refetch }) => {
                                                 Facebook
                                             </a>
                                         </td>
-                                        <td className="px-6 py-4 text-sm text-gray-700">
+                                        <td className="px-6 py-4 text-sm text-gray-800">
                                             {member.createdAt ? (
                                                 <div className="flex flex-col gap-1">
                                                     <span>{formatListDate(member.createdAt)}</span>

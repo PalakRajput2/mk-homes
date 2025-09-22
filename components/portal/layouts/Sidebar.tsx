@@ -52,16 +52,18 @@ const Sidebar = () => {
       <nav className="mt-6">
         {menuItems.map((item) => (
           <div key={item.name}>
-            <div className="flex items-center justify-between p-4 text-gray-600 hover:bg-red-100 cursor-pointer">
+            <div className="flex items-center justify-between gap-3  p-3 rounded text-gray-600 hover:bg-red-100 cursor-pointer">
               <Link
                 href={item.route}
-                className={`flex items-center gap-3 ${
-                  pathname === item.route ? "font-semibold" : ""
-                }`}
+                className={`flex items-center gap-3 flex-1 p-2 rounded ${pathname === item.route
+                    ? "bg-red-500 text-white font-semibold"
+                    : "text-gray-600"
+                  }`}
               >
                 {item.icon}
                 {item.name}
               </Link>
+
 
               {item.items && (
                 <button onClick={() => toggleMenu(item.name)}>
@@ -80,9 +82,8 @@ const Sidebar = () => {
                   <Link
                     key={subItem.name}
                     href={subItem.route}
-                    className={`block p-2 text-sm hover:bg-gray-100 border-l border-gray-500 pl-3 ${
-                      pathname === subItem.route ? "bg-gray-200 font-semibold" : ""
-                    }`}
+                    className={`block p-2 text-sm hover:bg-gray-100 border-l border-gray-500 pl-3 ${pathname === subItem.route ? "bg-gray-200 font-semibold" : ""
+                      }`}
                   >
                     {subItem.name}
                   </Link>
