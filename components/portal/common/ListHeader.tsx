@@ -28,9 +28,9 @@ useEffect(() => {
 }, [searchValue]);
 
   return (
-    <div className='pl-60 '>
-    <div className="flex items-center h-[70px] justify-between mb-4 bg-white shadow-sm px-3">
-      <h2 className="text-[22px] font-semibold ">{title}</h2>
+    <div className='pl-60 w-[1600px] pt-5'>
+    <div className="flex items-center h-[70px] justify-between mb-5  bg-white shadow-sm px-4 ">
+      <h2 className="text-[22px] font-semibold px-1">{title}</h2>
       <div className="flex items-center space-x-3">
         {selectedCount > 0 && onDeleteSelected && (
           <button

@@ -3,6 +3,7 @@
 import { useAuth } from '@/hooks/useAuth';
 import TeamList from '@/components/portal/team/TeamList';
 import Link from 'next/link';
+import { LocationBoard } from '@/components/portal/common/LocationBoard';
 
 
 export const metadata = {
@@ -15,8 +16,8 @@ const TeamPage = () => {
     <div>
 
 
-      <div className="p-8">
-  
+      <div className="px-8 ">
+  <LocationBoard/>
         <TeamList />
 
       </div>
