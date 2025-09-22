@@ -2,6 +2,7 @@
 'use client';
 
 import React from 'react';
+import { BiArrowToLeft, BiArrowToRight } from 'react-icons/bi';
 
 interface PaginationProps {
     page: number;
@@ -11,7 +12,7 @@ interface PaginationProps {
     onPrev: () => void;
     isNextDisabled: boolean;
     isPrevDisabled: boolean; onPageChange: (page: number) => void;
-    onPageSizeChange: (newSize: number) => void; 
+    onPageSizeChange: (newSize: number) => void;
 }
 
 const Pagination: React.FC<PaginationProps> = ({
@@ -31,7 +32,7 @@ const Pagination: React.FC<PaginationProps> = ({
         onPageSizeChange(size);
     };
     return (
-        <div className="pl-70  w-full flex items-center justify-between mt-4 ">
+        <div className="pl-62  w-full flex items-center justify-between mt-4 ">
             {/* Showing X to Y of Z entries */}
             <div className="text-sm text-gray-600 font-medium">
                 Showing {startEntry} to {endEntry} of {totalItems} entries
@@ -54,23 +55,22 @@ const Pagination: React.FC<PaginationProps> = ({
                 </select>
             </div>
             {/* Prev / Next buttons */}
-            <div className="flex space-x-4 items-center justify-center">
+            <div className="flex space-x-1 items-center justify-center">
                 <button
                     onClick={onPrev}
                     disabled={isPrevDisabled}
-                    className="px-4 py-2 bg-gray-300 rounded hover:bg-gray-400 disabled:opacity-50 cursor-pointer"
+                    className={`px-4 py-2 bg-gray-300 rounded hover:bg-gray-400 disabled:opacity-50 ${isPrevDisabled ? 'cursor-not-allowed' : 'cursor-pointer'
+                        }`}
                 >
-                    Prev
-                </button>
-                <span className="px-2 py-2 text-gray-700 font-medium">
-                    Page {page + 1} 
-                </span>
+                    <BiArrowToLeft />  </button>
+                <span className="px-2 py-2 text-gray-700 font-medium">Page {page + 1}</span>
                 <button
                     onClick={onNext}
                     disabled={isNextDisabled}
-                    className="px-4 py-2 bg-gray-300 rounded hover:bg-gray-400 disabled:opacity-50 cursor-pointer"
+                    className={`px-4 py-2 bg-gray-300 rounded hover:bg-gray-400 disabled:opacity-50 ${isNextDisabled ? 'cursor-not-allowed' : 'cursor-pointer'
+                        }`}
                 >
-                    Next
+                    <BiArrowToRight />
                 </button>
             </div>
         </div>

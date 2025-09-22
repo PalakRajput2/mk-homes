@@ -4,7 +4,8 @@ import { FaPeopleGroup, FaStaffSnake } from "react-icons/fa6";
 
 const Header = () => {
   return (
-    <header className="bg-white shadow-md pl-80 p-4 flex justify-between items-center">
+    <div className="pl-75  mr-8 pt-4  ">
+    <header className=" shadow-md  p-4 flex justify-between items-center bg-gray-100">
       <div className="flex items-center justify=center  text-center gap-6 ">
         <p className="text-lg font-semibold">APP MENU</p>
 
@@ -15,14 +16,14 @@ const Header = () => {
 
 
 
-        <Link href="/portal/staff" className="flex  items-center justify-center gap-3 cursor-pointer">
+        <Link href="/portal/tasks" className="flex  items-center justify-center gap-3 cursor-pointer">
           < FaTasks className="text-lg" />
           <p className="text-gray-600">Tasks</p>
         </Link>
 
 
 
-        <Link href="/portal/staff" className="flex  items-center justify-center gap-3  cursor-pointer">
+        <Link href="/portal/project" className="flex  items-center justify-center gap-3  cursor-pointer">
         < FaNewspaper className="text-lg" />
          <p className="text-gray-600">Project Management</p>
         </Link>
@@ -31,7 +32,7 @@ const Header = () => {
 
 
       </div>
-      <div className="flex items-center space-x-6 text-sm mr-10">
+      <div className="flex items-center space-x-6 text-sm">
         <button
 
           className="flex transform items-center text-[#F01E2C] transition-all duration-200 ease-in-out hover:scale-105 hover:text-red-800 cursor-pointer p-2">
@@ -41,6 +42,7 @@ const Header = () => {
         </button>
       </div>
     </header>
+    </div>
   );
 };
 

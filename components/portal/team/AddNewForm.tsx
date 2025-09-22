@@ -119,7 +119,7 @@ export default function AddNewForm() {
   }
 
   return (
-    <div className="md:w-[1100px] mx-auto p-8 mt-10 bg-white rounded-lg border border-gray-200">
+    <div className="md:w-[1150px] mx-auto p-8 mt-10 bg-white rounded-lg border border-gray-200">
       <h1 className="text-2xl font-bold mb-6">{isEdit ? 'Edit Team Member' : 'Add New '}</h1>
 
       <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
@@ -193,7 +193,7 @@ export default function AddNewForm() {
             disabled={isAdding || isEditing}
             className={`py-2 px-4 rounded text-white font-medium ${isAdding || isEditing
                 ? 'bg-gray-400 cursor-not-allowed'
-                : 'bg-blue-600 hover:bg-blue-700 cursor-pointer'
+                : 'bg-red-500 hover:bg-red-700 cursor-pointer'
               }`}
           >
             {isAdding || isEditing ? 'Saving...' : isEdit ? 'Update' : 'Save'}
