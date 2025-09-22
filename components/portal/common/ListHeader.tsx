@@ -26,7 +26,7 @@ export const ListHeader: React.FC<ListHeaderProps> = ({
 
   return (
     <div className="flex items-center h-[70px] justify-between mb-4 bg-white shadow-sm">
-      <h2 className="text-2xl font-semibold pl-70">{title}</h2>
+      <h2 className="text-[22px] font-semibold pl-63">{title}</h2>
       <div className="flex items-center space-x-3 pr-3">
         <div className="relative">
           <input
