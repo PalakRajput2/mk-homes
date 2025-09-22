@@ -1,6 +1,7 @@
 import { backendClient } from "@/client/backendClient";
 import { TQueryData } from "@/types/query";
 import { TeamMember } from "@/types/team";
+import { searchApiUrl } from "@/utils/searchApiUrl";
 import { TeamPayload } from "@/validations/team";
 
 const path = '/admin/team';
@@ -14,8 +15,11 @@ export const FETCH_TEAMS_KEY = 'list-teams';
 export const GET_TEAM_KEY = 'get-team';
 //Fetch all 
 export const fetchTeamList = async (payload: TQueryData) => {
-  const response = await backendClient.get(`${path}/list?size=${payload.size}&skip=${payload.skip}`); 
-  return response?.data?.data;
+    let url = searchApiUrl({ path, size: payload?.size, skip: payload?.skip, search: payload?.search, sorting: payload?.sorting });
+  
+   const response = await backendClient.get(
+            `${url}`,
+        );return response?.data?.data;
 };
 
 // Fetch single team member by ID

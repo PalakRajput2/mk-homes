@@ -21,7 +21,6 @@ const LoginPage = () => {
       const payload: TLogin = { email, password };
       const response = await loginRequest(payload);
       const data = response.data;
-      console.log(data)
       if (data.success === true && data.data?.accessToken) {
         const token = data.data.accessToken;
         const role = data.data.user?.role;

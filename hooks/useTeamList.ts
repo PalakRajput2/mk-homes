@@ -1,4 +1,3 @@
-// hooks/useTeamList.ts
 import { useQuery } from '@tanstack/react-query';
 import { fetchTeamList } from '@/client/endpoints/team';
 import { TeamMember } from '@/types/team';
@@ -8,13 +7,20 @@ interface TeamListResponse {
   total: number;
 }
 
-export const useTeamList = (skip: number, size: number) => {
+interface TeamListPayload {
+  skip: number;
+  size: number;
+  search?: string;
+}
+
+export const useTeamList = (skip: number, size: number, search: string) => {
   return useQuery<TeamListResponse, Error>({
-    queryKey: ['teamList', skip, size],
+    queryKey: ['teamList', skip, size, search],  // include search in cache key
     queryFn: async () => {
       const response = await fetchTeamList({
-          skip, size,
-          search: ''
+        skip,
+        size,
+        search,
       });
 
       if (Array.isArray(response)) {
